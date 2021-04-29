@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {%block title%}Search{%endblock%}{% block template %}
+
+<style>
+  body {
+    background-image: linear-gradient(
+        
+        rgba(13, 6, 54, 0.219),
+        rgba(43, 5, 5, 0.123)
+      ),
+      url("{{url_for('static',filename='img/backimg6.jpg')}}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  }
+  .search-bar[data-focused="true"] .search-bar__container, .search-bar:focus-within .search-bar__container {
+    background: #fff;
+    
+}
+.search-bar--open .search-bar__container {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.04),0 4px 16px 0 rgba(44,50,65,.08);
+}
+.search-bar__container {
+    display: flex;
+    border: none;
+    
+}
+input[type="text"], .form__textarea, input[type="email"], input[type="search"], input[type="number"], input[type="password"] {
+    padding: 2px;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #e8e8e8;
+    vertical-align: middle;
+    
+}
+.btn-1{
+  height: 3.5rem;
+  color: white;
+}
+.alert{
+    margin: 3rem;
+  }
+.white{
+  text-color: white;
+}
+.lef{
+  min-height: 40vh;
+  
+  justify-content: top;
+  
+  width: 40rem;
+}
+.lef div {
+  
+  width: 40rem;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.lef div img {
+  max-width: 20rem;
+  max-height: auto;
+}
+
+.lef div h2 {
+  font-size: 1.5rem;
+  color: var(--secondary);
+}
+.boxin{
+  margin-top: 6rem;
+  margin-left: 5rem;
+}
+</style>
+{% if not session['logged_in']%}
+<div>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Oh Snap!</strong> This action requires you to Login first.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+      
+</div>
+
+  <div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2>Search Books</h2>
+      <hr />
+      </div>
+    </div>
+  </div>
+       
+      {%else%}
+<div class="container fir-div">
+  
+  <form action="/books" class="fir-div">
+    <div class="container fir-div">
+      <div class="row justify-content-between">
+        
+        
+        
+    <div class="search-bar__container col-7 login-box  boxin">
+      
+
+
+      <input id="search"
+        type="search"
+        class="form-control"
+        name="search"
+        placeholder="Search your Book"
+        required="required"
+      />
+      <button class="btn btn-1" id="search-action" data-track-label="Searchicon">Search</button>
+    </div>
+  </form>
+  <div>
+    {% endif %}
+{%endblock%}
+  </div>
+</div>
