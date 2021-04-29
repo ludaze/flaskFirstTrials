@@ -1,52 +1,63 @@
-{% extends "layout.html" %}
-{% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-check">
-                    {{ form.remember(class="form-check-input") }}
-                    {{ form.remember.label(class="form-check-label") }}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-            <small class="text-muted ml-2">
-                <a href="#">Forgot Password?</a>
-            </small>
+{% extends 'base.html' %} {%block title%}Login{%endblock%} {% block template %}
+
+<style>
+  body {
+    background-image: linear-gradient(
+        to right,
+        rgba(13, 6, 54, 0.219),
+        rgba(43, 5, 5, 0.123)
+      ),
+      url("{{url_for('static',filename='img/backimg6.jpg')}}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  }
+
+.nam{
+  margin-top: 5rem;
+  width: 20rem;
+}
+.white{
+  color: white;
+}
+</style>
+<div class="mycontainer">
+  
+  <div class="nam">
+    <div class="login-box">
+      <h3 align="center">Login</h3>
+      {% if message %}
+      <div class="error">{{message}}</div>
+      {%endif%}
+      <div class="">
+        <form method="POST" action="{{ url_for('login', next=next) }}">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input  
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Username"
+              name="username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Password"
+              name="password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn white">Login</button>
         </form>
+      </div>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
-        </small>
-    </div>
-{% endblock content %}
+  </div>
+</div>
+{%endblock%}
